@@ -20,6 +20,15 @@ export default {
       }, {
         text: '多选',
         path: '/checkbox'
+      }, {
+        text: '表单',
+        path: '/input'
+      }, {
+        text: '记数器',
+        path: '/inputnumber'
+      }, {
+        text: '下拉框选择器',
+        path: '/select'
       }]
     }
   }
@@ -38,5 +47,8 @@ export default {
   padding: 10px 0 10px 20px;
   border-bottom: 1px solid #888888;
   border-right: 1px solid #888888;
+}
+.home-right {
+  padding: 20px;
 }
 </style>
