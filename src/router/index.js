@@ -35,6 +35,22 @@ const routes = [
       path: '/select',
       name: 'select',
       component: () => import('../views/select.vue')
+    }, {
+      path: '/cascader',
+      name: 'cascader',
+      component: () => import('../views/cascader.vue')
+    }, {
+      path: '/switch',
+      name: 'switch',
+      component: () => import('../views/switch.vue')
+    }, {
+      path: '/star',
+      name: 'star',
+      component: () => import('../views/star.vue')
+    }, {
+      path: '/tag',
+      name: 'tag',
+      component: () => import('../views/tag.vue')
     }]
   }
 ]

@@ -29,6 +29,18 @@ export default {
       }, {
         text: '下拉框选择器',
         path: '/select'
+      }, {
+        text: '级联选择器',
+        path: '/cascader'
+      }, {
+        text: 'switch开关',
+        path: '/switch'
+      }, {
+        text: '星级评分',
+        path: '/star'
+      }, {
+        text: '标签',
+        path: '/tag'
       }]
     }
   }
