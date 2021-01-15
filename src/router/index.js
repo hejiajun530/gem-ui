@@ -51,6 +51,10 @@ const routes = [
       path: '/tag',
       name: 'tag',
       component: () => import('../views/tag.vue')
+    }, {
+      path: '/rili',
+      name: 'rili',
+      component: () => import('../views/rili.vue')
     }]
   }
 ]

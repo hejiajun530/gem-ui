@@ -41,6 +41,9 @@ export default {
       }, {
         text: '标签',
         path: '/tag'
+      }, {
+        text: '日历',
+        path: '/rili'
       }]
     }
   }
