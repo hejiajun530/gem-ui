@@ -3,11 +3,6 @@
     <!-- 日历 -->
     <g-rili
       class="home-rili"
-      :oneSelect="false"
-      @g-riliStartTime="handleGetTime"
-    ></g-rili>
-    <g-rili
-      class="home-rili"
       @g-riliStartTime="handleGetTime"
     ></g-rili>
   </div>
@@ -27,7 +22,7 @@ export default {
     // 获取日历的 日期
     handleGetTime(startTime, endTime) {
       var _self = this;
-      console.log(startTime, endTime);
+      // console.log(startTime, endTime);
     },
     // 选择时间
     handleClickChooseTime(date) {

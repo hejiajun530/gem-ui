@@ -55,6 +55,18 @@ const routes = [
       path: '/rili',
       name: 'rili',
       component: () => import('../views/rili.vue')
+    }, {
+      path: '/timepicker',
+      name: 'timepicker',
+      component: () => import('../views/timepicker.vue')
+    }, {
+      path: '/datepicker',
+      name: 'datepicker',
+      component: () => import('../views/datepicker.vue')
+    }, {
+      path: '/upload',
+      name: 'upload',
+      component: () => import('../views/upload.vue')
     }]
   }
 ]

@@ -1,68 +1,91 @@
 <template>
-  <div id="calendar">
-    <!-- 标题 -->
-    <div class="calendar-arrow flex-around-center">
-      <div
-        class="calendar-left"
-        @click="changeMonth('pre')"
-      > ❮ </div>
-      <div class="calendar-ym">{{currentYear}}年{{currentMonth}}月</div>
-      <div
-        class="calendar-now"
-        @click="changeMonth('today')"
-      >本月</div>
-      <div
-        class="calendar-right"
-        @click="changeMonth('next')"
-      > ❯ </div>
+  <div class="time-picker" v-clickOutSide="handleClickHide">
+    <div class="time-picker-input" @click="handleClickShowOrHide">
+      <i class="iconfont icon-rili"></i>
+      <input type="text" v-model="strTime" :placeholder="placeholder" disabled>
+      <i class="iconfont icon-guanbi" v-show="strTime" @click.stop="handleClickClear"></i>
     </div>
-    <!-- 月日星期 -->
-    <div class="calendar-list">
-      <!-- 星期行 -->
-      <ul class="calendar-weekdays flex-around-center">
-        <li
-          v-for='(val,key) in weeks'
-          :key="key"
-        >
-          <span>{{val}}</span>
-        </li>
-      </ul>
-      <!-- 日期 -->
-      <ul class="calendar-days flex-around-center">
-        <li
-          v-for='(item,index) in daylist'
-          :key="index"
-          class="flex-around-center"
-        >
-          <div
-            class="calendar-days-list flex-column-around-center"
-            v-for="(val, key) in item"
-            :key="key"
-            @click="handleClickTime(val, key)"
-            :class="chooseClass(val.day)"
-          >
-            <h4 v-if="val">
-              {{val.day.getDate() | twoNumber}}
-            </h4>
-            <!-- <template v-if="!oneSelect">
-              <h4 v-if="chooseClass(val.day) == 'active'">入住</h4>
-              <h4 v-else-if="chooseClass(val.day) == 'tuifang'">离店</h4>
-            </template> -->
+    <div class="time-picker-container" v-show="timeFlag">
+      <div class="time-picker-box">
+        <!-- 日历 -->
+        <div id="calendar">
+          <!-- 标题 -->
+          <div class="calendar-arrow flex-around-center">
+            <div
+              class="calendar-left"
+              @click="changeMonth('pre')"
+            > ❮ </div>
+            <div class="calendar-ym">{{currentYear}}年{{currentMonth}}月</div>
+            <div
+              class="calendar-now"
+              @click="changeMonth('today')"
+            >本月</div>
+            <div
+              class="calendar-right"
+              @click="changeMonth('next')"
+            > ❯ </div>
           </div>
-        </li>
-      </ul>
+          <!-- 月日星期 -->
+          <div class="calendar-list">
+            <!-- 星期行 -->
+            <ul class="calendar-weekdays flex-around-center">
+              <li
+                v-for='(val,key) in weeks'
+                :key="key"
+              >
+                <span>{{val}}</span>
+              </li>
+            </ul>
+            <!-- 日期 -->
+            <ul class="calendar-days flex-around-center">
+              <li
+                v-for='(item,index) in daylist'
+                :key="index"
+                class="flex-around-center"
+              >
+                <div
+                  class="calendar-days-list flex-column-around-center"
+                  v-for="(val, key) in item"
+                  :key="key"
+                  @click="handleClickTime(val, key)"
+                  :class="chooseClass(val.day)"
+                >
+                  <h4 v-if="val">
+                    {{val.day.getDate() | twoNumber}}
+                  </h4>
+                  <!-- <template v-if="!oneSelect">
+                    <h4 v-if="chooseClass(val.day) == 'active'">入住</h4>
+                    <h4 v-else-if="chooseClass(val.day) == 'tuifang'">离店</h4>
+                  </template> -->
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="time-picker-btn">
+        <div @click="handleClickHide">取消</div>
+        <div @click="handleClickChoose">确认</div>
+      </div>
     </div>
   </div>
 </template>
+
 <script>
+import { clickOutSide } from '@/commons/directive.js';
 export default {
   props: {
-    oneSelect: {
-      default: true
+    placeholder: {
+      type: String,
+      default: '任意日期'
     }
+  },
+  directives: {
+    clickOutSide
   },
   data() {
     return {
+      timeFlag: false,
       // 日历
       showWeeks: ["日", "一", "二", "三", "四", "五", "六"],
       weeks: ["一", "二", "三", "四", "五", "六", "日"],
@@ -74,8 +97,9 @@ export default {
       showOtherMonth: true,
       firstClickTimeFlag: true,
       startTime: "",
-      endTime: ""
-    };
+      endTime: "",
+      strTime: ''
+    }
   },
   filters: {
     twoNumber(param) {
@@ -87,10 +111,36 @@ export default {
     }
   },
   created() {
-    this.handleDefaultTime();
-    this.init();
+    const self = this;
+    self.handleDefaultTime();
+    self.init();
   },
   methods: {
+    // 显示或隐藏
+    handleClickShowOrHide() {
+      const self = this;
+      self.timeFlag = !self.timeFlag;
+    },
+    // 隐藏
+    handleClickHide() {
+      const self = this;
+      self.timeFlag = false;
+    },
+    // 确认
+    handleClickChoose() {
+      const self = this;
+      self.strTime = '';
+      let d = new Date(self.startTime);
+      self.strTime = self.formDate(d.getFullYear(), d.getMonth() + 1, d.getDate());
+      self.$emit('input', self.strTime);
+    },
+    // 清空
+    handleClickClear() {
+      const self = this;
+      self.strTime = '';
+      self.$emit('input', self.strTime);
+    },
+    // 日历---------------------------------------------------------------
     // 获取本月所有日期
     init(data) {
       let day;
@@ -316,10 +366,68 @@ export default {
       return new Date(date);
     }
   }
-};
+}
 </script>
 
 <style scoped>
+.time-picker {
+  position: relative;
+  width: 250px;
+  height: 35px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+.time-picker-input {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.time-picker-input i {
+  margin: 0 5px;
+}
+.time-picker-input input {
+  flex: 1;
+  padding: 0 0 0 5px;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+.time-picker-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translate(0, 100%);
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 999;
+}
+.time-picker-btn {
+  width: 100%;
+  padding: 5px 10px;
+  border-top: 1px solid #cccccc;
+  font-size: 14px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  box-sizing: border-box;
+}
+.time-picker-btn div {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.time-picker-btn div:last-child {
+  color: aqua;
+}
+
+
+/* 日历 */
 ul {
   list-style-type: none;
 }
@@ -336,9 +444,9 @@ ul {
 }
 #calendar {
   position: relative;
-  width: 350px;
-  padding: 0 15px 15px 15px;
+  width: 100%;
   border-radius: 10px;
+  padding: 10px 0;
   overflow: hidden;
   background-color: #f5f5f5;
 }
@@ -346,8 +454,8 @@ ul {
 .calendar-arrow {
   position: relative;
   width: 100%;
-  height: 80px;
-  font-size: 26px;
+  height: 40px;
+  font-size: 18px;
 }
 
 .calendar-left,
@@ -361,15 +469,15 @@ ul {
   top: 50%;
   right: 18%;
   transform: translate(0, -50%);
-  font-size: 16px;
+  font-size: 12px;
+  cursor: pointer;
 }
 .calendar-weekdays {
   width: 100%;
-  height: 50px;
+  height: 35px;
   font-size: 16px;
   background-color: #e6f8fa;
   border-radius: 50px;
-  margin-bottom: 10px;
 }
 
 .calendar-weekdays li {
@@ -431,8 +539,8 @@ ul {
 /* 选择的日期 */
 .calendar-days li .calendar-days-list.active,
 .calendar-days li .calendar-days-list.tuifang {
-  background-color: #62aba0;
-  color: #ffffff;
+  background-color: #62aba0 !important;
+  color: #ffffff !important;
 }
 .calendar-days li .calendar-days-list.activeColor {
   background-color: #e6f8fa;

@@ -44,6 +44,15 @@ export default {
       }, {
         text: '日历',
         path: '/rili'
+      }, {
+        text: '时间选择器',
+        path: '/timepicker'
+      }, {
+        text: '日期选择器',
+        path: '/datepicker'
+      }, {
+        text: '上传图片',
+        path: '/upload'
       }]
     }
   }
