@@ -53,6 +53,15 @@ export default {
       }, {
         text: '上传图片',
         path: '/upload'
+      }, {
+        text: '分页',
+        path: '/pageing'
+      }, {
+        text: '下拉菜单',
+        path: '/dropdown'
+      }, {
+        text: '折叠面板',
+        path: '/collaspe'
       }]
     }
   }

@@ -67,6 +67,18 @@ const routes = [
       path: '/upload',
       name: 'upload',
       component: () => import('../views/upload.vue')
+    }, {
+      path: '/pageing',
+      name: 'pageing',
+      component: () => import('../views/pageing.vue')
+    }, {
+      path: '/dropdown',
+      name: 'dropdown',
+      component: () => import('../views/dropdown.vue')
+    }, {
+      path: '/collaspe',
+      name: 'collaspe',
+      component: () => import('../views/collaspe.vue')
     }]
   }
 ]
