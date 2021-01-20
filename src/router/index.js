@@ -79,6 +79,10 @@ const routes = [
       path: '/collaspe',
       name: 'collaspe',
       component: () => import('../views/collaspe.vue')
+    }, {
+      path: '/message',
+      name: 'message',
+      component: () => import('../views/message.vue')
     }]
   }
 ]

@@ -13,7 +13,7 @@ export default {
     },
     accordion: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   data () {

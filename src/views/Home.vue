@@ -62,6 +62,9 @@ export default {
       }, {
         text: '折叠面板',
         path: '/collaspe'
+      }, {
+        text: '消息提示',
+        path: '/message'
       }]
     }
   }
