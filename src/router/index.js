@@ -83,6 +83,30 @@ const routes = [
       path: '/message',
       name: 'message',
       component: () => import('../views/message.vue')
+    }, {
+      path: '/loading',
+      name: 'loading',
+      component: () => import('../views/loading.vue')
+    }, {
+      path: '/notif',
+      name: 'notif',
+      component: () => import('../views/notif.vue')
+    }, {
+      path: '/alert',
+      name: 'alert',
+      component: () => import('../views/alert.vue')
+    }, {
+      path: '/tab',
+      name: 'tab',
+      component: () => import('../views/tab.vue')
+    }, {
+      path: '/dialog',
+      name: 'dialog',
+      component: () => import('../views/dialog.vue')
+    }, {
+      path: '/swiper',
+      name: 'swiper',
+      component: () => import('../views/swiper.vue')
     }]
   }
 ]

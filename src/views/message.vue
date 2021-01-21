@@ -24,7 +24,7 @@ export default {
     handleClickSuccess() {
       const self = this;
       // console.log(self)
-      self.$messagejs({
+      self.$message({
         icon: 'icon-kabao',
         type: 'success',
         message: '成功提示',
@@ -36,7 +36,7 @@ export default {
     handleClickWarn() {
       const self = this;
       // console.log(self)
-      self.$messagejs({
+      self.$message({
         type: 'warn',
         message: '警告提示',
         duration: 3000
@@ -47,7 +47,7 @@ export default {
     handleClickError() {
       const self = this;
       // console.log(self)
-      self.$messagejs({
+      self.$message({
         type: 'error',
         message: '错误提示错误提示错误提示错误提示错误提示错误提示错误提示错误提示错误提示错误提示错误提示',
         duration: 3000
@@ -58,7 +58,7 @@ export default {
     handleClickInfo() {
       const self = this;
       // console.log(self)
-      self.$messagejs({
+      self.$message({
         type: 'info',
         message: '信息提示',
         duration: 3000

@@ -21,8 +21,11 @@ export default {
   created() {
     const self = this;
     let doms = document.querySelectorAll('.tyq-message');
-    // console.log(doms.length, doms[doms.length - 1].style.top, doms[doms.length - 1].style.height);
-    self.top = doms.length * 70 + 20
+    // console.log(doms, doms[doms.length - 1].style.top);
+    let beforetop = doms.length ? Number(doms[doms.length - 1].style.top.slice(0, doms[doms.length - 1].style.top.length - 2)) : 0;
+    let beforeheight = doms.length ? Number(doms[doms.length - 1].clientHeight) : 0;
+    // console.log(beforetop);
+    self.top = beforeheight + beforetop + 20;
   },
   methods: {
     icon () {

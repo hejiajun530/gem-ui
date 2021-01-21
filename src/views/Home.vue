@@ -65,6 +65,24 @@ export default {
       }, {
         text: '消息提示',
         path: '/message'
+      }, {
+        text: '动画加载',
+        path: '/loading'
+      }, {
+        text: '通知',
+        path: '/notif'
+      }, {
+        text: '弹出提示',
+        path: '/alert'
+      }, {
+        text: 'tab栏切换',
+        path: '/tab'
+      }, {
+        text: '弹出框',
+        path: '/dialog'
+      }, {
+        text: '轮播图',
+        path: '/swiper'
       }]
     }
   }
