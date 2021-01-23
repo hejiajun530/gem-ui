@@ -1,5 +1,5 @@
 <template>
-  <div class="tabpane" v-show="$parent.value == name">
+  <div class="table">
     <slot></slot>
   </div>
 </template>
@@ -7,8 +7,8 @@
 <script>
 export default {
   props: {
-    name: {
-      type: String
+    data: {
+      type: Array
     }
   },
   data () {
@@ -18,7 +18,5 @@ export default {
 </script>
 
 <style scoped>
-.tabpane {
-  padding: 20px;
-}
+
 </style>

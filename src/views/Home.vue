@@ -83,7 +83,12 @@ export default {
       }, {
         text: '轮播图',
         path: '/swiper'
-      }]
+      }, 
+      // {
+      //   text: '表格',
+      //   path: '/table'
+      // }
+      ]
     }
   }
 }
@@ -96,11 +101,23 @@ export default {
   justify-content: flex-start;
   align-items: flex-start;
 }
+.home-left {
+  height: 100vh;
+  overflow-y: auto;
+}
+.home-left::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.home-left::-webkit-scrollbar-thumb {
+  width: 10px;
+  background: #dddddd;
+  border-radius: 10px;
+}
 .home-left-item {
   width: 250px;
   padding: 10px 0 10px 20px;
   border-bottom: 1px solid #888888;
-  border-right: 1px solid #888888;
 }
 .home-right {
   padding: 20px;
